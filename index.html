@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alien Immigration Portal</title>
+  <style>
+    /* #f8dda8 #52bccd*/
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: "Orbitron", sans-serif;
+      /* background: linear-gradient(135deg, #050018, #14003a 40%, #000814); */
+      background-image: url('./wmremove-transformed.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #e0ffe7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .portal {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      /* border: 2px solid #00ffe0; */
+      border: 2px soloid #f8dda8;
+      border-radius: 18px;
+      padding: 40px;
+      width: 420px;
+      box-shadow: 0 0 30px #f8dda8, inset 0 0 15px #00ffee33;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* #00ffe088, */
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      color: #ae1e64;
+      font-size: 1.9rem;
+      text-shadow: 0 0 20px #ae1e64;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #aaffd5;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #caffef;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #f8dda8;
+      border-radius: 5px;
+      background: rgba(0, 255, 224, 0.08);
+      color: #fff;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 12px #f8dda8;
+      background: rgba(0, 255, 224, 0.15);
+    }
+
+    .error {
+      color: #ff7878;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      text-align: left;
+    }
+
+    button {
+      margin-top: 25px;
+      background: linear-gradient(90deg, #ae1e64, #52bccd);
+      border: none;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 0 25px #ae1e64;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px #ae1e64;
+    }
+
+    .success {
+      color: #f8dda8;
+      font-weight: bold;
+      margin-top: 15px;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 8px #f8dda8; }
+      to { text-shadow: 0 0 25px #f8dda8; }
+    }
+
+    .stars {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .stars span {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      opacity: 0.7;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 0.2; }
+    }
+
+    /* Subtle glow ring */
+    .portal::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 20px;
+      background: radial-gradient(circle, #00ffe055 10%, transparent 70%);
+      z-index: -1;
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* 🛸 Dancing Alien */
+.alien {
+  position: absolute;
+  bottom: 60px;
+  right: 80px;
+  width: 120px;
+  height: 200px;
+  animation: dance 2s infinite ease-in-out;
+  transform-origin: bottom center;
+}
+
+@keyframes dance {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(5deg) translateY(-5px); }
+  50% { transform: rotate(-5deg) translateY(-8px); }
+  75% { transform: rotate(5deg) translateY(-5px); }
+}
+
+.alien-head {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #00ffe0, #007070);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.alien-eyes {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 28px;
+  width: 100%;
+}
+
+.alien-eyes span {
+  width: 15px;
+  height: 25px;
+  background: black;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ffee;
+}
+
+.antenna {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  width: 3px;
+  height: 25px;
+  background: #00ffee;
+  transform: translateX(-50%);
+}
+.antenna::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  width: 15px;
+  height: 15px;
+  background: #ae1e64;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #f8dda8;
+}
+
+.alien-body {
+  width: 50px;
+  height: 90px;
+  background: radial-gradient(circle, #00ffe0, #006060);
+  border-radius: 30px 30px 10px 10px;
+  margin: 10px auto 0;
+  box-shadow: 0 0 10px #00ffee88;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="portal">
+    <h1>🛸 Alien Immigration Portal</h1>
+    <p>Register before landing on Earth 🌍</p>
+
+    <form id="alienForm" novalidate>
+      <label>Planet Name</label>
+      <input type="text" id="planetName" placeholder="e.g. Zeta-9a" />
+      <div class="error" id="planetError"></div>
+
+      <label>Antenna Count</label>
+      <input type="number" id="antennaCount" placeholder="e.g. 4" />
+      <div class="error" id="antennaError"></div>
+
+      <label>Alien ID</label>
+      <input type="text" id="alienId" placeholder="ZOR-XY9999@UFO_" />
+      <div class="error" id="alienIdError"></div>
+
+      <label>Favorite Human Phrase</label>
+      <input type="text" id="favoritePhrase" placeholder="Hello, Earth! 🌍" />
+      <div class="error" id="phraseError"></div>
+
+      <label>Landing Date</label>
+      <input type="date" id="landingDate" />
+      <div class="error" id="dateError"></div>
+
+      <button type="submit">🚀 Register Now</button>
+      <div id="successMessage" class="success"></div>
+    </form>
+  </div>
+
+  <div class="alien">
+    <div class="alien-head">
+      <div class="alien-eyes">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="antenna"></div>
+    </div>
+    <div class="alien-body"></div>
+  </div>
+
+  <script>
+    // 🌟 Star background animation
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement("span");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      starsContainer.appendChild(star);
+    }
+
+    // 💫 Validation logic
+    const form = document.getElementById("alienForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const planet = document.getElementById("planetName").value.trim();
+      const antenna = document.getElementById("antennaCount").value.trim();
+      const alienId = document.getElementById("alienId").value.trim();
+      const phrase = document.getElementById("favoritePhrase").value.trim();
+      const date = document.getElementById("landingDate").value;
+
+      // ✅ Regex patterns
+      const planetRegex = /^(?=.*[aeiouAEIOU])(?=.*\d)[A-Za-z0-9\s-]+$/;
+      const alienIdRegex = /^[A-Z]{3}-[A-Z]{2}\d{4}@[A-Z]+_$/;
+      const emojiOrPunct = /[\p{P}\p{S}]/u; // punctuation or symbols
+
+      // Clear old errors
+      document.querySelectorAll(".error").forEach(el => el.textContent = "");
+      document.getElementById("successMessage").textContent = "";
+
+      // Planet Name validation
+      if (!planetRegex.test(planet)) {
+        document.getElementById("planetError").textContent =
+          "Planet must include at least one vowel and one digit.";
+        valid = false;
+      }
+
+      // Antenna Count validation
+      if (!/^\d+$/.test(antenna) || parseInt(antenna) % 2 !== 0) {
+        document.getElementById("antennaError").textContent =
+          "Only even numbers allowed.";
+        valid = false;
+      }
+
+      // Alien ID validation
+      if (!alienIdRegex.test(alienId)) {
+        document.getElementById("alienIdError").textContent =
+          "Must follow pattern like ZOR-XY9999@UFO_.";
+        valid = false;
+      }
+
+      // Favorite Phrase validation (emoji/punctuation)
+      if (!emojiOrPunct.test(phrase)) {
+        document.getElementById("phraseError").textContent =
+          "Must include at least one emoji or punctuation.";
+        valid = false;
+      }
+
+      // Landing Date validation
+      const today = new Date();
+      const selected = new Date(date);
+      today.setHours(0, 0, 0, 0);
+      selected.setHours(0, 0, 0, 0);
+      if (!date || selected < today) {
+        document.getElementById("dateError").textContent =
+          "Landing date cannot be in the past.";
+        valid = false;
+      }
+
+      // ✅ If all valid
+      if (valid) {
+        document.getElementById("successMessage").textContent =
+          "✅ Registration successful! Welcome to Earth!";
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
